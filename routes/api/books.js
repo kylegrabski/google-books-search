@@ -1,18 +1,18 @@
 const router = require("express").Router();
-const postsController = require("../../controllers/postsController");
+const booksController = require("../../controllers/booksController");
 
 // Matches with "/api/books"
 router
   .route("/")
-  .get(postsController.findAll)
-  .post(postsController.create);
+  .get(booksController.findAll)
+  .post(booksController.create);
 
 // Matches with "/api/books/:id"
 router
   .route("/:id")
-  .get(postsController.findById)
+  .get(booksController.findById)
   //may not need put, only get and delete? maybe just delete?
-  .put(postsController.update)
-  .delete(postsController.remove);
+  .put(booksController.update)
+  .delete(booksController.remove);
 
 module.exports = router;
