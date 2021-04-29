@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const Books = new Schema({
+const booksSchema = new Schema({
   title: { type: String, required: true },
   authors: { type: String, required: true },
   description: { type: String },
@@ -9,6 +9,6 @@ const Books = new Schema({
   link: { type: String },
 });
 
-const Books = mongoose.model("Post", Books);
+const Books = mongoose.model("SavedBooks", booksSchema);
 
-module.exports = SaveSearch;
+module.exports = Books;
