@@ -34,9 +34,9 @@ mongoose.connect(process.env.MONGOD_URI || "mongodb://localhost/googlebooks", {
 // Send every other request to the React app
 // Define any API routes before this runs
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
-// });
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 
 app.use(function ( req, res) {
   res.sendFile(path.join(__dirname, "/client/build/index.html"))
