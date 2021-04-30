@@ -3,7 +3,7 @@ import API from "../utils/API";
 
 const Search = ()  => {
   const getBooks = (search) => {
-    API.getBooks(search)
+    API.searchGoogleBooks(search)
       .then((results) => {
         console.log(results);
       })
