@@ -12,7 +12,6 @@ router
   .route("/:id")
   .get(booksController.findById)
   //may not need put, only get and delete? maybe just delete?
-  .put(booksController.update)
-  .delete(booksController.remove);
+  .delete(booksController.remove); 
 
 module.exports = router;
