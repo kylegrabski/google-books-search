@@ -48,16 +48,6 @@ const Search = () => {
     }
   };
 
-  // const renderElements = () => {
-  //   if (searchedBooks.length !== 0) {
-  //     console.log("HERE COME THE BOOKS ON THE PAGE!");
-
-  //     searchedBooks.map((book) => {
-  //       console.log("MAPPED BOOKS", book);
-  //     });
-  //   }
-  // };
-  // renderElements();
   return (
     <>
       <div>
@@ -77,14 +67,14 @@ const Search = () => {
         {/* // if searchedbooks.length !== 0, then searched books .map, return
         cards. */}
       </div>
-      <Container fluid className="py-5 book-card">
+      <Container  className="py-5 book-card">
         <Row className="pb-5 mb-4">
           {searchedBooks.map((book) => (
-            <Col className="lg-3 md-6 mb-4 mb-lg-0">
-            <Card style={{ width: "18rem" }} key={book.bookId}>
+            <Col className="lg-3 md-6 mb-4 mb-lg-0" key={book.bookId}>
+            <Card style={{ width: "18rem" }} >
               <Card.Img variant="top" src={book.image} 
               style={{width:"10rem", height:"auto",position:"relative", left:"58px" }}
-              fluid />
+               />
               <Card.Header as="h5">{book.title}</Card.Header>
               <Card.Body>
                 <Card.Title>{book.authors}</Card.Title>
