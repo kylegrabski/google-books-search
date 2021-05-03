@@ -48,22 +48,19 @@ const Search = () => {
     }
   };
 
-  const renderElements = () => {
-    if (searchedBooks.length !== 0) {
-      console.log("HERE COME THE BOOKS ON THE PAGE!");
+  // const renderElements = () => {
+  //   if (searchedBooks.length !== 0) {
+  //     console.log("HERE COME THE BOOKS ON THE PAGE!");
 
-      searchedBooks.map((book) => {
-        console.log("MAPPED BOOKS", book);
-      });
-    }
-  };
-  renderElements();
+  //     searchedBooks.map((book) => {
+  //       console.log("MAPPED BOOKS", book);
+  //     });
+  //   }
+  // };
+  // renderElements();
   return (
     <>
       <div>
-        {/* <h3>BOOK SEARCH</h3>
-        <h3>BOOK SEARCH</h3>
-        <h3>BOOK SEARCH</h3> */}
         <Form className="mt-5 pt-4">
           <Form.Group>
             <Form.Label>Book Search</Form.Label>
