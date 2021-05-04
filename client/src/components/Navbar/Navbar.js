@@ -1,14 +1,15 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function NavHeader() {
   return (
     <Navbar fixed="top" bg="dark" variant="dark">
-      <Navbar.Brand href="#home">Google Books Search</Navbar.Brand>
+      <Navbar.Brand >Google Books Search</Navbar.Brand>
       <Nav className="mr-auto">
         {/* @ToDO change these href's to router links */}
-        <Nav.Link href="/">Home</Nav.Link>
-        <Nav.Link href="saved-books">Saved Books</Nav.Link>
+        <Link to="/">Home</Link>
+        <Link to="saved-books">Saved Books</Link>
       </Nav>
     </Navbar>
   );
