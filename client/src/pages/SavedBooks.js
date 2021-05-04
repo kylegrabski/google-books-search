@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import API from "../utils/API";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -17,7 +17,7 @@ const SavedBooks = () => {
     try {
       let response = await API.searchBooks();
       response = response.data;
-      setFavoriteBooks(response)
+      setFavoriteBooks(response, ...favoriteBooks)
       console.log("FAVORITE BOOKS STORE", favoriteBooks);
       
       return 
@@ -27,8 +27,28 @@ const SavedBooks = () => {
     }
   }
 
+  const removeFavorite = async id => {
+      console.log(id)
+      try{
+          let response = await API.deleteBook(id)
+        //   return {
+        //     ...favoriteBooks,
+        //     favorites: favoriteBooks.favorites.filter((post) => {
+        //       return post._id !== favoriteBooks._id; 
+        //     })
+        // }
+        window.location.reload(true);
+      }catch (error){
+          console.error(error);
+      }
+  }
 
-renderSavedBooks();
+  useEffect(() => {
+    renderSavedBooks()
+  }, []);
+
+
+// renderSavedBooks();
   return (
       <>
       renderSavedBooks()
@@ -59,6 +79,9 @@ renderSavedBooks();
                     </Card.Text>
                   </MDBContainer>
                 </Card.Body>
+                <button className="btn" onClick={(e) => removeFavorite(book._id)}>
+                  Remove from Favorites
+                </button>
               </Card>
             </Col>
           ))}
