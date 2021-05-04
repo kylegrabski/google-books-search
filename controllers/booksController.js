@@ -1,26 +1,26 @@
-const db = require("../models/books")
+const Books = require("../models/books")
 
 // Defining methods for the booksController
 module.exports = {
     findAll: function(req, res) {
-      db.Books.find(req.query)
+      Books.find(req.query)
         .sort({ title: 1 })
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },
     findById: function(req, res) {
-      db.Books.findById(req.params.id)
+      Books.findById(req.params.id)
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },
     create: function(req, res) {
-      db.Books.create(req.body)
+      Books.create(req.body)
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },
    
     remove: function(req, res) {
-      db.Books.findById({ _id: req.params.id })
+      Books.findById({ _id: req.params.id })
         .then(dbModel => dbModel.remove())
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
