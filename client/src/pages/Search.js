@@ -6,7 +6,7 @@ import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { MDBContainer } from 'mdbreact';
+import { MDBContainer } from "mdbreact";
 
 const Search = () => {
   //userInput is the var that holds the value
@@ -16,7 +16,6 @@ const Search = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    console.log("HANDLE FORM SUBMIT CALLED");
 
     if (userInput === "") {
       return;
@@ -41,8 +40,27 @@ const Search = () => {
       }));
       setSearchedBooks(bookData);
       setUserInput("");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-      console.log("SEARCHED BOOKS STATE", searchedBooks);
+  const addFavorite = async (book) => {
+    console.log("favorites", book);
+    let currentAuthor = book.authors[0];
+    const data = {
+      authors: currentAuthor || "No Author",
+      title: book.title,
+      description: book.description,
+      image: book.image,
+    };
+    console.log(data);
+    if (!data) {
+      return;
+    }
+    try {
+      const response = await API.saveBook(data);
+      console.log(response);
     } catch (error) {
       console.error(error);
     }
@@ -67,22 +85,37 @@ const Search = () => {
         {/* // if searchedbooks.length !== 0, then searched books .map, return
         cards. */}
       </div>
-      <Container  className="py-5 book-card">
+      <Container className="py-5 book-card">
         <Row className="pb-5 mb-4">
           {searchedBooks.map((book) => (
             <Col className="lg-3 md-6 mb-4 mb-lg-0" key={book.bookId}>
-            <Card style={{ width: "18rem" }} >
-              <Card.Img variant="top" src={book.image} 
-              style={{width:"10rem", height:"auto",position:"relative", left:"58px" }}
-               />
-              <Card.Header as="h5">{book.title}</Card.Header>
-              <Card.Body>
-                <Card.Title>{book.authors}</Card.Title>
-                <MDBContainer>
-                <Card.Text className="overflow-auto" style={{height: "260px"}}>{book.description}</Card.Text>
-                </MDBContainer>
-              </Card.Body>
-            </Card>
+              <Card style={{ width: "18rem" }}>
+                <Card.Img
+                  variant="top"
+                  src={book.image}
+                  style={{
+                    width: "10rem",
+                    height: "auto",
+                    position: "relative",
+                    left: "58px",
+                  }}
+                />
+                <Card.Header as="h5">{book.title}</Card.Header>
+                <Card.Body>
+                  <Card.Title>{book.authors}</Card.Title>
+                  <MDBContainer>
+                    <Card.Text
+                      className="overflow-auto"
+                      style={{ height: "260px" }}
+                    >
+                      {book.description}
+                    </Card.Text>
+                  </MDBContainer>
+                </Card.Body>
+                <button className="btn" onClick={(e) => addFavorite(book)}>
+                  Add to Favorites
+                </button>
+              </Card>
             </Col>
           ))}
         </Row>

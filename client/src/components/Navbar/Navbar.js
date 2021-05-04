@@ -7,8 +7,8 @@ function NavHeader() {
       <Navbar.Brand href="#home">Google Books Search</Navbar.Brand>
       <Nav className="mr-auto">
         {/* @ToDO change these href's to router links */}
-        <Nav.Link href="#home">Home</Nav.Link>
-        <Nav.Link href="#features">Saved Books</Nav.Link>
+        <Nav.Link href="/">Home</Nav.Link>
+        <Nav.Link href="saved-books">Saved Books</Nav.Link>
       </Nav>
     </Navbar>
   );
