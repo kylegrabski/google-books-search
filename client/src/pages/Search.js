@@ -22,14 +22,11 @@ const Search = () => {
     }
     try {
       const response = await API.searchGoogleBooks(userInput);
-      console.log("RESPONSE", response);
       if (response.status !== 200) {
         throw new Error("ERROR AT HANDLE FORM SUBMIT");
       }
 
       const { items } = await response.data;
-
-      console.log("ITEMS", items);
 
       const bookData = items.map((book) => ({
         bookId: book.id,
@@ -46,7 +43,6 @@ const Search = () => {
   };
 
   const addFavorite = async (book) => {
-    console.log("favorites", book);
     let currentAuthor = book.authors[0];
     const data = {
       authors: currentAuthor || "No Author",
@@ -55,13 +51,11 @@ const Search = () => {
       image: book.image,
       bookId: book.bookId
     };
-    console.log(data);
     if (!data) {
       return;
     }
     try {
       const response = await API.saveBook(data);
-      console.log(response);
     } catch (error) {
       console.error(error);
     }

@@ -15,7 +15,6 @@ const SavedBooks = () => {
       let response = await API.searchBooks();
       response = response.data;
       setFavoriteBooks(response, ...favoriteBooks);
-      console.log("FAVORITE BOOKS STORE", favoriteBooks);
 
       return;
     } catch (error) {
@@ -25,7 +24,6 @@ const SavedBooks = () => {
   };
 
   const removeFavorite = async (id) => {
-    console.log(id);
     try {
       let response = await API.deleteBook(id);
      
