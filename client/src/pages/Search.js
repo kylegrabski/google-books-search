@@ -53,6 +53,7 @@ const Search = () => {
       title: book.title,
       description: book.description,
       image: book.image,
+      bookId: book.bookId
     };
     console.log(data);
     if (!data) {
@@ -90,17 +91,23 @@ const Search = () => {
           {searchedBooks.map((book) => (
             <Col className="lg-3 md-6 mb-4 mb-lg-0" key={book.bookId}>
               <Card style={{ width: "18rem" }}>
-                <Card.Img
-                  variant="top"
-                  src={book.image}
-                  style={{
-                    width: "10rem",
-                    height: "auto",
-                    position: "relative",
-                    left: "58px",
-                  }}
-                />
+                <a
+                  href={`https://google.com/books/edition/${book.title}/${book.bookId}`}
+                  target="_blank"
+                >
+                  <Card.Img
+                    variant="top"
+                    src={book.image}
+                    style={{
+                      width: "10rem",
+                      height: "auto",
+                      position: "relative",
+                      left: "58px",
+                    }}
+                  />
+                </a>
                 <Card.Header as="h5">{book.title}</Card.Header>
+
                 <Card.Body>
                   <Card.Title>{book.authors}</Card.Title>
                   <MDBContainer>
@@ -112,7 +119,11 @@ const Search = () => {
                     </Card.Text>
                   </MDBContainer>
                 </Card.Body>
-                <button className="btn" onClick={(e) => addFavorite(book)}>
+                <button
+                  className="btn"
+                  onClick={(e) => addFavorite(book)}
+                  style={{ border: "solid" }}
+                >
                   Add to Favorites
                 </button>
               </Card>
