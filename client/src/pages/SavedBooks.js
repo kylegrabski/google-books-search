@@ -8,65 +8,61 @@ import Col from "react-bootstrap/Col";
 import { MDBContainer } from "mdbreact";
 
 const SavedBooks = () => {
-
-
-    const [favoriteBooks, setFavoriteBooks] = useState([]);
+  const [favoriteBooks, setFavoriteBooks] = useState([]);
 
   const renderSavedBooks = async () => {
- 
     try {
       let response = await API.searchBooks();
       response = response.data;
-      setFavoriteBooks(response, ...favoriteBooks)
+      setFavoriteBooks(response, ...favoriteBooks);
       console.log("FAVORITE BOOKS STORE", favoriteBooks);
-      
-      return 
+
+      return;
     } catch (error) {
       console.error(error);
       return;
     }
-  }
+  };
 
-  const removeFavorite = async id => {
-      console.log(id)
-      try{
-          let response = await API.deleteBook(id)
-        //   return {
-        //     ...favoriteBooks,
-        //     favorites: favoriteBooks.favorites.filter((post) => {
-        //       return post._id !== favoriteBooks._id; 
-        //     })
-        // }
-        window.location.reload(true);
-      }catch (error){
-          console.error(error);
-      }
-  }
+  const removeFavorite = async (id) => {
+    console.log(id);
+    try {
+      let response = await API.deleteBook(id);
+     
+      window.location.reload(true);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
-    renderSavedBooks()
+    renderSavedBooks();
   }, []);
 
-
-// renderSavedBooks();
+  // renderSavedBooks();
   return (
-      <>
+    <>
       renderSavedBooks()
       <Container className="py-5 book-card">
         <Row className="pb-5 mb-4">
           {favoriteBooks.map((book) => (
             <Col className="lg-3 md-6 mb-4 mb-lg-0" key={book.bookId}>
               <Card style={{ width: "18rem" }}>
-                <Card.Img
-                  variant="top"
-                  src={book.image}
-                  style={{
-                    width: "10rem",
-                    height: "auto",
-                    position: "relative",
-                    left: "58px",
-                  }}
-                />
+              <a
+                  href={`https://google.com/books/edition/${book.title}/${book.bookId}`}
+                  target="_blank"
+                >
+                  <Card.Img
+                    variant="top"
+                    src={book.image}
+                    style={{
+                      width: "10rem",
+                      height: "auto",
+                      position: "relative",
+                      left: "58px",
+                    }}
+                  />
+                </a>
                 <Card.Header as="h5">{book.title}</Card.Header>
                 <Card.Body>
                   <Card.Title>{book.authors}</Card.Title>
@@ -79,7 +75,11 @@ const SavedBooks = () => {
                     </Card.Text>
                   </MDBContainer>
                 </Card.Body>
-                <button className="btn" onClick={(e) => removeFavorite(book._id)}>
+                <button
+                  className="btn"
+                  onClick={(e) => removeFavorite(book._id)}
+                  style={{ border: "solid" }}
+                >
                   Remove from Favorites
                 </button>
               </Card>
