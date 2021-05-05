@@ -8,8 +8,8 @@ function NavHeader() {
       <Navbar.Brand >Google Books Search</Navbar.Brand>
       <Nav className="mr-auto">
         {/* @ToDO change these href's to router links */}
-        <Link to="/">Home</Link>
-        <Link to="saved-books">Saved Books</Link>
+        <Link to="/" style={{color:"white", padding:"5px", marginLeft:"5px"}}>Home</Link>
+        <Link to="saved-books" style={{color:"white", padding:"5px", marginLeft:"5px"}}>Saved Books</Link>
       </Nav>
     </Navbar>
   );
